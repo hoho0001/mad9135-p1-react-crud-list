@@ -24,7 +24,10 @@ class App extends React.Component {
   componentDidMount() {
     // check localStorage for an array
     let _list = localStorage.getItem('myList')
-    if (_list) this.setState({list:JSON.parse(_list)})
+    if (_list)
+      this.setState({ list: JSON.parse(_list) })
+    else
+      localStorage.setItem('myList', JSON.stringify(this.state.list));
   }
 
   buildList = (data) => {
