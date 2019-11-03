@@ -2,12 +2,16 @@
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { Jumbotron, Button } from 'reactstrap';
+
 const AppHeader = () => {
   return (
-    <div>
-      <h1>React CRUD List</h1>
-      <NavLink to='/item'>Add item</NavLink>
-    </div>
+    <Jumbotron>
+      <h1 className="display-3">React CRUD List</h1>
+      <p className="lead">
+      <NavLink to='/item' className="App-link"><Button  color="primary" outline block={false}>Add Item</Button></NavLink>
+      </p>
+    </Jumbotron>
   )
 }
 

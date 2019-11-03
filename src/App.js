@@ -7,18 +7,19 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import AppHeader from './components/AppHeader'
 import ListView from './components/ListView'
 import NewItemView from './components/NewItemView';
-
-
-console.log(cuid());
+import './App.css'
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      list: [{ id: cuid(), name: "Apple Cider", price: '100', status: 'read' },
-      { id: cuid(), name: "Apple Sauce", price: '200', status: 'read' },
-      { id: cuid(), name: "Apple Tree", price: '300', status: 'read' }]
-    }
+      list: [
+      { id: cuid(), name: "19F_MAD9132_300", detail: 'Android Application Development', status: 'read' },
+      { id: cuid(), name: "19F_MAD9135_300", detail: 'Developing HTML5 Mobile Apps', status: 'read' },
+      { id: cuid(), name: "19F_MAD9137_300", detail: 'iOS Development', status: 'read' },
+      { id: cuid(), name: "19F_MAD9034_300", detail: 'User Experience Design', status: 'read' },
+      { id: cuid(), name: "19F_ENL8720_304", detail: 'Technical Report Writing', status: 'read' }
+    ]}
   }
 
   componentDidMount() {
@@ -56,6 +57,7 @@ class App extends React.Component {
   }
 
   deleteItem = (targetItem) => {
+
     // remove item in this.state.list
     let newList = this.state.list.filter(item => item.id !== targetItem.id)
     // Update State
@@ -65,11 +67,11 @@ class App extends React.Component {
   render() {
     return (
 
-      <HashRouter>
+      <HashRouter basename='/'>
         <div className="App">
           <AppHeader />
           <Switch>
-            <Route path={`/item`} render={(props) => <NewItemView {...props} handleAdd={this.addItem} item={{ name: '', price: '' }} />} />
+            <Route path={`/item`} render={(props) => <NewItemView {...props} handleAdd={this.addItem} item={{ name: '', detail: '' }} />} />
             <Route exact path='/' render={(props) => <ListView {...props} items={this.state.list} handleDelete={this.deleteItem} handleEdit={this.editItem} />} />
           </Switch>
         </div>
