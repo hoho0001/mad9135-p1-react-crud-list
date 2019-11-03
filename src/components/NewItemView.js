@@ -42,6 +42,7 @@ class NewItemView extends React.Component {
   render() {
     return (
       <Container className="container">
+        <Row className="title">Add Item</Row>
         <Row>
           <Col>
             <Form>
