@@ -5,6 +5,7 @@ import cuid from 'cuid';
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import AppHeader from './components/AppHeader'
+import AppFooter from './components/AppFooter'
 import ListView from './components/ListView'
 import NewItemView from './components/NewItemView';
 import './App.css'
@@ -74,7 +75,9 @@ class App extends React.Component {
             <Route path={`/item`} render={(props) => <NewItemView {...props} handleAdd={this.addItem}  />} />
             <Route exact path='/' render={(props) => <ListView {...props} items={this.state.list} handleDelete={this.deleteItem} handleEdit={this.editItem} />} />
           </Switch>
+          <AppFooter />
         </div>
+
       </HashRouter>
     );
   }
