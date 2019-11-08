@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   addItem = (item) => {
-
+    item.id= cuid()
     let newList = this.state.list.concat(item) // OR list.push(item)  add new value to the ending of the existing array
     // this.setState({ list: [item, ...this.state.list] }) // add new value to the beginning of the existing array
     this.buildList(newList)
@@ -71,7 +71,7 @@ class App extends React.Component {
         <div className="App">
           <AppHeader />
           <Switch>
-            <Route path={`/item`} render={(props) => <NewItemView {...props} handleAdd={this.addItem} item={{ name: '', detail: '' }} />} />
+            <Route path={`/item`} render={(props) => <NewItemView {...props} handleAdd={this.addItem}  />} />
             <Route exact path='/' render={(props) => <ListView {...props} items={this.state.list} handleDelete={this.deleteItem} handleEdit={this.editItem} />} />
           </Switch>
         </div>

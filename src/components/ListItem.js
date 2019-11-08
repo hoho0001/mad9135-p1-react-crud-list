@@ -1,7 +1,8 @@
 // Lien Ho Hoang - 2019/11/02
 
 import React from 'react'
-import { Col, Card, CardText, CardBody, CardTitle, Form, Button, FormGroup, Label, Input } from 'reactstrap';
+import { Col, Card, CardText, CardBody, CardTitle, Button } from 'reactstrap';
+import FormDetail from './FormDetail'
 
 class ListItem extends React.Component {
   constructor(props) {
@@ -19,23 +20,17 @@ class ListItem extends React.Component {
     item.status = (item.status === 'read') ? 'edit' : 'read'
     this.setState({ ...item })
   }
-  handleInputChange = event => {
-    const { name, value } = event.target
-    this.setState({ [name]: value });
-  };
 
   handleFormSubmit = event => {
-    event.preventDefault();
-    if (!this.state.name || !this.state.detail) return
-
-    this.setState({ status: 'read' })
-
-    this.props.handleEdit({
+    let item = {
       id: this.state.id,
-      name: this.state.name,
-      detail: this.state.detail,
+      name: event.name,
+      detail: event.detail,
       status: 'read'
-    })
+    }
+    this.setState(item)
+    this.props.handleEdit(item)
+
   };
 
   handleCancel = event => {
@@ -67,18 +62,7 @@ class ListItem extends React.Component {
         </Col>
         :
         <Col sm='6'>
-          <Form className='form'>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-              <Label for="itemName" className="mr-sm-2">Name</Label>
-              <Input type="text" name="name" id="itemName" placeholder="Item name" value={this.state.name} onChange={this.handleInputChange} />
-            </FormGroup>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-              <Label for="itemDetail" className="mr-sm-2">Detail</Label>
-              <Input type="textarea" name="detail" id="itemDetail" placeholder="Item detail" value={this.state.detail} onChange={this.handleInputChange} />
-            </FormGroup>
-            <Button outline color="success" onClick={this.handleFormSubmit}>Save</Button>
-            <Button outline onClick={this.handleCancel}>Cancel</Button>
-          </Form>
+          <FormDetail item={this.state} handleCancel={this.handleCancel} handleFormSubmit={this.handleFormSubmit} />
         </Col>
     )
   }
