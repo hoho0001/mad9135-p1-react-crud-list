@@ -1,7 +1,6 @@
 // Lien Ho Hoang - 2019/11/02
 
 import React from 'react'
-import cuid from 'cuid';
 import { Form, Button, FormGroup, Label, Input } from 'reactstrap';
 
 class NewItemView extends React.Component {
